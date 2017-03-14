@@ -1,2 +1,4 @@
-# ignore everying in dist folder
-.idea/*
+node_modules/
+blog/
+*.git
+*.idea

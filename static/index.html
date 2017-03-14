@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<title>vue example</title>
+	<!--[if IE]>
+		<script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script>
+		<script src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js'></script>
+	<![endif]-->
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		ul li {
+			list-style: inside disc;
+		}
+
+		table {
+			background: #cccccc;
+			margin-left: 10px;
+		}
+
+		table td {
+			background: #f2f2f2;
+		}
+
+		.wrap {
+			margin: 20px;
+			background: #f2f2f2;
+			text-indent: 10px;
+			line-height: 26px;
+		}
+
+		.wrap div {
+			padding: 20px 0;
+		}
+
+		.wrap h1 {
+			font-size: 20px;
+			background: #009926;
+			color: #ffffff;
+		}
+
+		.wrap h2 {
+			font-size: 14px;
+			font-weight: normal;
+		}
+
+		.wrap button {
+			padding: 5px 10px;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<h1>Example one</h1>
+	<div id="app">
+		{{message}}
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example two: v-bind</h1>
+	<div id="app2">
+			<span v-bind:title="message2">
+				Hover your mouse over me for a few seconds to see my dynamics bound title!
+			</span>
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example three: v-if</h1>
+	<div id="app3">
+		<h2>{{message3}}</h2>
+		<p v-if="seen" class="three-seen">Now you see</p>
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example four: v-for</h1>
+	<div id="app4">
+		<table width="60%" cellspacing="1" cellpadding="0">
+			<todo-item v-for="field in list" v-bind:todo="field"></todo-item>
+		</table>
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example five: v-on</h1>
+	<div id="app5">
+		<p>{{message5}}</p>
+		<button v-on:click="toggleMessage">toggleMessage</button>
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example six: v-model</h1>
+	<div id="app6">
+		<p>{{message6}}</p>
+		<input v-model="message6">
+	</div>
+</div>
+
+<div class="wrap">
+	<h1>Example seven: componant</h1>
+	<div id="app7">
+		<table width="60%" cellspacing="1" cellpadding="0">
+			<todo-item v-for="field in states" v-bind:todo="field"></todo-item>
+		</table>
+	</div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.js"></script>
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.15.3/axios.js"></script>
+<script>
+	window.onload = function() {
+		var app = new Vue({
+			el: "#app",
+			data: {
+				message: 'message1'
+			},
+			mounted: function() {
+				var url = '/api/user/login/';
+				axios.get(url)
+						.then(function(response) {
+							console.log(response);
+						})
+						.catch(function(error) {
+							console.log(error);
+						})
+			}
+		});
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				message2: 'message2 ' + new Date()
+			}
+		});
+		var app3 = new Vue({
+			el: "#app3",
+			data: {
+				message3: "message3",
+				seen: true
+			}
+		});
+//			if(!app3.seen){
+//				console.log("app3.seen: " + app3.seen)
+//				$(".three-seen").hide();
+//			}
+		Vue.component('todo-item', {
+			props: ['todo'],
+			template: '<tr><td width="40%">{{todo.name}}</td><td width="30%">{{todo.sex}}</td><td width="30%">{{todo.age}}</td></tr>'
+		})
+		var app4 = new Vue({
+			el: "#app4",
+			data: {
+				list: [
+					{name: "xiaoming", sex: "male", age: 22},
+					{name: "xiaochen", sex: "female", age: 23},
+					{name: "xiaohong", sex: "male", age: 24},
+					{name: "xiaoli", sex: "female", age: 25}
+				]
+			}
+		});
+		var app5 = new Vue({
+			el: "#app5",
+			data: {
+				message5: "message5"
+			},
+			methods: {
+				toggleMessage: function() {
+					//split将字符串分割为字符串数组
+					//split(separator,howmany)把一个字符串分割成字符串数组,howmany可选,指定返回数组的最大长度，separator必须
+					//join将数组放入一个数组中
+					//join(separator)参数可选，把数组中的所有元素放入一个字符串
+					this.message5 = this.message5.split('').reverse().join('');
+				},
+				testFun: function() {
+					alert("test:methods中多个方法")
+				}
+			}
+		});
+		var app6 = new Vue({
+			el: "#app6",
+			data: {
+				message6: "message6"
+			}
+		});
+		var app7 = new Vue({
+			el: "#app7",
+			data: {
+				states: [
+					{name: "中国", age: "85", sex: "male"},
+					{name: "美国", age: "85", sex: "male"},
+					{name: "加拿大", age: "85", sex: "male"},
+				]
+			}
+		});
+	}
+</script>
+</body>
+</html>
