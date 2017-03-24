@@ -1,4 +1,8 @@
 node_modules/
-blog/
+blog/*deploy_git
+blog/scaffolds/
+blog/source/
+blog/themes/
+blog/*.npmignore
 *.git
 *.idea
