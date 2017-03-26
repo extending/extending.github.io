@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>lesile</title>
+	<meta charset="utf-8">
+	<style>
+		body {
+			background: -webkit-linear-gradient(left, #c9acc4, #efd3c3, #9d8478);
+			background: linear-gradient(left, #c9acc4, #efd3c3, #9d8478);
+			font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
+		}
+
+		h1 {
+			font-weight: 300;
+			font-size: 50px;
+			color: #ffffff;
+			text-align: center;
+			padding: 100px 0;
+			text-shadow: 2px 2px 20px #edf10c;
+		}
+	</style>
+</head>
+<body>
+<h1>lesile</h1>
+<audio id="bgmusic" src="video/leslie.mp3" autoplay loop>您的浏览器不支持audio标签。
+</audio>
+<script>
+//	document.addEventListener('DOMContentLoaded', function () {
+//		function audioAutoPlay() {
+//			var audio = document.getElementById('bgmusic');
+//			audio.play();
+//			document.addEventListener("WeixinJSBridgeReady", function () {
+//				audio.play();
+//			}, false);
+//		}
+//
+//		audioAutoPlay();
+//	});
+
+	function autoPlayMusic() {
+		// 自动播放音乐效果，解决浏览器或者APP自动播放问题
+		function musicInBrowserHandler() {
+			musicPlay(true);
+			document.body.removeEventListener('touchstart', musicInBrowserHandler);
+		}
+
+		document.body.addEventListener('touchstart', musicInBrowserHandler);
+		// 自动播放音乐效果，解决微信自动播放问题
+		function musicInWeixinHandler() {
+			musicPlay(true);
+			document.addEventListener("WeixinJSBridgeReady", function () {
+				musicPlay(true);
+			}, false);
+			document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+		}
+
+		document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+	}
+	function musicPlay(isPlay) {
+		var media = document.querySelector('#bgmusic');
+		if (isPlay && media.paused) {
+			media.play();
+		}
+		if (!isPlay && !media.paused) {
+			media.pause();
+		}
+	}
+	autoPlayMusic();
+</script>
+</body>
+</html>
