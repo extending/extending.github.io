@@ -1,16 +1,17 @@
 <html>
 <head>
-	<title>继续宠爱</title>
+	<title>go on</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="video/fakeLoader.css">
+	<link rel="stylesheet" href="video/animate.min.css">
 	<style>
-		body {
-			background: rgba(181,48,33,.6);
-			font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
+		html,body {
 			min-width: 320px;
 			max-width: 640px;
+			font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
 			height: 100%;
+			margin: 0 auto;
 		}
 		body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, input, a, table, img, hr, textarea, strong, figure {
 			margin: 0;
@@ -18,32 +19,65 @@
 		}
 
 		.cont {
+			overflow: hidden;
+			width: 100%;
 			height: 100%;
-			margin:0 20px;
+			background: rgba(181,48,33,.6);
 		}
 
-		h1 {
-			width: 100%;
-			padding-top: 50%;
-			-ms-writing-mode: tb-rl;
-			writing-mode: tb-rl;
-			text-transform: uppercase;
+		section{
+			max-width: 640px;
+			height:100%;
+			margin: 50% auto 0;
+		}
+		ul{
+			overflow: hidden;
+			list-style: none;
+		}
+		li {
+			float: right;
+			width: 0rem;
 			font-size: 1rem;
 			color: #f1ebe5;
-			text-shadow: 0 8px 9px #c4b59d, 0px -2px 1px #fff;
 			font-weight: 400;
-			letter-spacing: -4px;
 			text-align: center;
+			margin-right: 7.5rem;
+			word-wrap: break-word;
 		}
+		
+		.animate-delay{
+			animation-duration: 1s;
+			-webkit-animation-duration: 1s;
+    		animation-delay:3s;
+            -webkit-animation-delay:3s;
+		}
+
+		li:nth-child(2){
+			margin-right: 2rem;
+			animation-delay:4.5s;
+            -webkit-animation-delay:4.5s;
+		}
+		li:nth-child(3){
+			margin-right: 2rem;
+			animation-delay:6s;
+            -webkit-animation-delay:6s;
+		}
+		
 	</style>
 	<script src="video/jquery-2.1.4.min.js"></script>
 	<script src="video/fakeLoader.min.js"></script>
 </head>
 <body>
 <div id="cont" class="cont">
-	<h1>风再起时</h1>
-	<audio id="bgmusic" src="video/leslie.mp3" autoplay loop>您的浏览器不支持audio标签。
-	</audio>
+	<section>
+		<ul>
+			<li class="animated fadeInRight animate-delay">梁伟文</li>
+			<li class="animated fadeInRight animate-delay">江志仁：梦到内河</li>
+			<li class="animated fadeInRight animate-delay">泽日生：任我行</li>
+		</ul>
+		<audio id="bgmusic" src="video/leslie.mp3" autoplay loop>您的浏览器不支持audio标签。
+		</audio>
+	</section>
 </div>
 <div class="fakeloader"></div>
 <script>
