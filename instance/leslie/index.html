@@ -1,58 +1,103 @@
 <html>
 <head>
-	<title>Lesile，继续宠爱</title>
+	<title>继续宠爱</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="video/fakeLoader.css">
 	<style>
 		body {
-			background: -webkit-linear-gradient(left, #c9acc4, #efd3c3, #9d8478);
-			background: linear-gradient(left, #c9acc4, #efd3c3, #9d8478);
+			background: rgba(181,48,33,.6);
 			font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
+			min-width: 320px;
+			max-width: 640px;
+			height: 100%;
+		}
+		body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, input, a, table, img, hr, textarea, strong, figure {
+			margin: 0;
+			padding: 0;
+		}
+
+		.cont {
+			height: 100%;
+			margin:0 20px;
 		}
 
 		h1 {
-			font-weight: 300;
-			font-size: 50px;
-			color: #ffffff;
+			width: 100%;
+			padding-top: 50%;
+			-ms-writing-mode: tb-rl;
+			writing-mode: tb-rl;
+			text-transform: uppercase;
+			font-size: 1rem;
+			color: #f1ebe5;
+			text-shadow: 0 8px 9px #c4b59d, 0px -2px 1px #fff;
+			font-weight: 400;
+			letter-spacing: -4px;
 			text-align: center;
-			padding: 100px 0;
-			text-shadow: 2px 2px 20px #edf10c;
 		}
 	</style>
+	<script src="video/jquery-2.1.4.min.js"></script>
+	<script src="video/fakeLoader.min.js"></script>
 </head>
 <body>
-<h1>lesile</h1>
-<audio id="bgmusic" src="video/leslie.mp3" autoplay loop>您的浏览器不支持audio标签。
-</audio>
+<div id="cont" class="cont">
+	<h1>风再起时</h1>
+	<audio id="bgmusic" src="video/leslie.mp3" autoplay loop>您的浏览器不支持audio标签。
+	</audio>
+</div>
+<div class="fakeloader"></div>
 <script>
-	function autoPlayMusic() {
-		// 自动播放音乐效果，解决浏览器或者APP自动播放问题
-		function musicInBrowserHandler() {
-			musicPlay(true);
-			document.body.removeEventListener('touchstart', musicInBrowserHandler);
-		}
-
-		document.body.addEventListener('touchstart', musicInBrowserHandler);
-		// 自动播放音乐效果，解决微信自动播放问题
-		function musicInWeixinHandler() {
-			musicPlay(true);
-			document.addEventListener("WeixinJSBridgeReady", function () {
+	window.onload = function() {
+		function autoPlayMusic() {
+			// 自动播放音乐效果，解决浏览器或者APP自动播放问题
+			function musicInBrowserHandler() {
 				musicPlay(true);
-			}, false);
-			document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+				document.body.removeEventListener('touchstart', musicInBrowserHandler);
+			}
+
+			document.body.addEventListener('touchstart', musicInBrowserHandler);
+			// 自动播放音乐效果，解决微信自动播放问题
+			function musicInWeixinHandler() {
+				musicPlay(true);
+				document.addEventListener("WeixinJSBridgeReady", function() {
+					musicPlay(true);
+				}, false);
+				document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+			}
+
+			document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
 		}
 
-		document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-	}
-	function musicPlay(isPlay) {
-		var media = document.querySelector('#bgmusic');
-		if (isPlay && media.paused) {
-			media.play();
+		function musicPlay(isPlay) {
+			var media = document.querySelector('#bgmusic');
+			if (isPlay && media.paused) {
+				media.play();
+			}
+			if (!isPlay && !media.paused) {
+				media.pause();
+			}
 		}
-		if (!isPlay && !media.paused) {
-			media.pause();
-		}
+
+		autoPlayMusic();
 	}
-	autoPlayMusic();
+</script>
+<script>
+	$(function() {
+		var win = $("body").width();
+		var fz = win * 2 / 750 * 16;
+		$("html").css("font-size", +fz + "px");
+
+		$(window).resize(function() {
+			var win = $("body").width();
+			var fz = win * 2 / 750 * 16;
+			$("html").css("font-size", +fz + "px");
+		})
+	$(".fakeloader").fakeLoader({
+		timeToHide:1500,
+		bgColor:"#c3d0d8",
+		spinner:"spinner7"
+	});
+	});
 </script>
 </body>
 </html>
