@@ -119,10 +119,12 @@
 	</div>
 </div>
 
+<div class="wrap">
+	<todo-item >
 
-<p>
-	temp
-</p>
+	</todo-item>
+</div>
+
 <script src="https://cdn.bootcss.com/vue/2.2.2/vue.js"></script>
 <script src="/static/js/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.15.3/axios.js"></script>
@@ -157,14 +159,10 @@
 				seen: true
 			}
 		});
-//			if(!app3.seen){
-//				console.log("app3.seen: " + app3.seen)
-//				$(".three-seen").hide();
-//			}
 		Vue.component('todo-item', {
 			props: ['todo'],
 			template: '<tr><td width="40%">{{todo.name}}</td><td width="30%">{{todo.sex}}</td><td width="30%">{{todo.age}}</td></tr>'
-		})
+		});
 		var app4 = new Vue({
 			el: "#app4",
 			data: {
@@ -214,14 +212,14 @@
 		var home = {
 			template: '<p>welcome home!</p>'
 		};
+		var company = {
+			template: '<h2>welcome company!</h2>'
+		};
 		var app8 = new Vue({
 			el: '#app8',
 			data: {
-				currentView: 'company'
-			},
-			components: {
-				company: {}
-			},
+				currentView: company
+			}
 		});
 	}
 </script>
