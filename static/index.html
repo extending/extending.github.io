@@ -112,6 +112,14 @@
 	</div>
 </div>
 
+<div class="wrap">
+	<h1>Example eight: 动态组件</h1>
+	<div id="app8">
+		<companent :is="currentView"></companent>
+	</div>
+</div>
+
+
 <p>
 	temp
 </p>
@@ -201,6 +209,19 @@
 					{name: "加拿大", age: "85", sex: "male"},
 				]
 			}
+		});
+
+		var home = {
+			template: '<p>welcome home!</p>'
+		};
+		var app8 = new Vue({
+			el: '#app8',
+			data: {
+				currentView: 'company'
+			},
+			components: {
+				company: {}
+			},
 		});
 	}
 </script>
