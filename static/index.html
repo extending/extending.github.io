@@ -111,6 +111,14 @@
 		</table>
 	</div>
 </div>
+
+<div class="wrap">
+	<h1>Example eight: 动态组件</h1>
+	<div id="app8">
+		<companent :is="currentView"></companent>
+	</div>
+</div>
+
 <script src="https://cdn.bootcss.com/vue/2.2.2/vue.js"></script>
 <script src="/static/js/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.15.3/axios.js"></script>
@@ -197,6 +205,19 @@
 					{name: "加拿大", age: "85", sex: "male"},
 				]
 			}
+		});
+
+		var home = {
+			template: '<p>welcome home!</p>'
+		};
+		var app8 = new Vue({
+			el: '#app8',
+			data: {
+				currentView: 'company'
+			},
+			components: {
+				company: {}
+			},
 		});
 	}
 </script>
