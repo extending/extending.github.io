@@ -9,7 +9,8 @@ gulp.task('server',function() {
 			baseDir:'./',
 		},
 		open:'external',
-		startPath:'/'
+		startPath:'/',
+		port: 8000
 	});
 
 	gulp.watch('*.html').on('change',browserSync.reload)
