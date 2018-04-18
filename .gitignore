@@ -6,3 +6,4 @@ blog/themes/
 blog/*.npmignore
 *.git
 *.idea
+pages/
